@@ -30,6 +30,7 @@ async function handleTextMessage(ctx) {
     filePath = await downloadVideo(url);
     await ctx.replyWithVideo({ source: filePath, caption: MESSAGES.SUCCESS });
   } catch (err) {
+    console.error('Download error:', err.message);
     await ctx.reply(getErrorMessage(err));
   } finally {
     await cleanupFile(filePath);
