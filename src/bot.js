@@ -12,7 +12,11 @@ if (!process.env.BOT_TOKEN) {
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-bot.start((ctx) => ctx.reply(MESSAGES.START));
+const LOGO_PATH = path.join(__dirname, '..', 'assets', 'logo.png');
+
+bot.start((ctx) =>
+  ctx.replyWithPhoto({ source: LOGO_PATH }, { caption: MESSAGES.START }),
+);
 bot.on('text', handleTextMessage);
 
 bot.catch((err) => {
