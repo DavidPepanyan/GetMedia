@@ -20,6 +20,10 @@ This may take up to a minute.`,
 
   SUCCESS: '✅ Done!\n\nHere is your video.',
 
+  SUCCESS_FOLLOWUP: `✅ All done!
+
+Your video is ready. Send another link whenever you want.`,
+
   DOWNLOAD_FAILED: `❌ Couldn't download this video.
 The link may be private, unsupported, or unavailable.`,
 

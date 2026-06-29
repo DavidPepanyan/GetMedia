@@ -29,6 +29,7 @@ async function handleTextMessage(ctx) {
     await ctx.sendChatAction('upload_video');
     filePath = await downloadVideo(url);
     await ctx.replyWithVideo({ source: filePath, caption: MESSAGES.SUCCESS });
+    await ctx.reply(MESSAGES.SUCCESS_FOLLOWUP);
   } catch (err) {
     console.error('Download error:', err.message);
     await ctx.reply(getErrorMessage(err));
