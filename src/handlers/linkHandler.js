@@ -4,6 +4,7 @@ const { DownloadError, downloadVideo, cleanupFile } = require('../services/downl
 
 function getErrorMessage(err) {
   if (err instanceof DownloadError) {
+    if (err.code === 'INSTAGRAM_PRIVATE') return MESSAGES.INSTAGRAM_PRIVATE;
     if (err.code === 'FILE_TOO_LARGE') return MESSAGES.FILE_TOO_LARGE;
     if (err.code === 'DOWNLOAD_FAILED') return MESSAGES.DOWNLOAD_FAILED;
   }

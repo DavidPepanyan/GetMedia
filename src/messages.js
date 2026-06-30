@@ -27,6 +27,11 @@ Your video is ready. Send another link whenever you want.`,
   DOWNLOAD_FAILED: `❌ Couldn't download this video.
 The link may be private, unsupported, or unavailable.`,
 
+  INSTAGRAM_PRIVATE: `❌ This Instagram post can't be downloaded.
+
+It may be private, login-only, or age-restricted.
+This bot only supports publicly accessible links.`,
+
   FILE_TOO_LARGE: `⚠️ This file is too large for Telegram (max 50 MB).
 Try a shorter video or lower quality.`,
 

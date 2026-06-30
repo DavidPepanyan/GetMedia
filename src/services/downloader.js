@@ -37,6 +37,22 @@ async function findDownloadedFile(prefix) {
   return path.join(DOWNLOADS_DIR, match);
 }
 
+function getDownloadErrorCode(url, err) {
+  const output = `${err.stderr || ''} ${err.message || ''}`.toLowerCase();
+  const isInstagram = /instagram\.com/i.test(url) || output.includes('[instagram]');
+
+  if (
+    isInstagram &&
+    (output.includes('empty media response') ||
+      output.includes('cookies-from-browser') ||
+      output.includes('use --cookies'))
+  ) {
+    return 'INSTAGRAM_PRIVATE';
+  }
+
+  return 'DOWNLOAD_FAILED';
+}
+
 /**
  * @param {string} url
  * @returns {Promise<string>} Path to downloaded file
@@ -59,7 +75,7 @@ async function downloadVideo(url) {
     });
   } catch (err) {
     console.error('yt-dlp error:', err.stderr || err.message);
-    throw new DownloadError('DOWNLOAD_FAILED', err.message);
+    throw new DownloadError(getDownloadErrorCode(url, err), err.message);
   }
 
   const filePath = await findDownloadedFile(fileId);
